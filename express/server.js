@@ -82,7 +82,12 @@ router.get('/post/:postID', (req, res) => {
 			// res.write("Referer: " + req.header('Referer') + "\n User Agent: " + req.get('User-Agent'));
 			var title = JSON.parse(data)['title'];
 			var content = JSON.parse(data)['content'];
-			var thumbnail = "https://" + req.hostname + "/uploads/" + JSON.parse(data)['id'] + ".jpg";
+      var foto = JSON.parse(data)['id'];
+      if(foto == '3050'){
+        var thumbnail = "https://i.imgur.com/2TOtmzH.jpg";
+      }else{   
+			  var thumbnail = "https://" + req.hostname + "/uploads/" + JSON.parse(data)['id'] + ".jpg";
+      }
 			var description = JSON.parse(data)['description'];
 			var htmlCode = `<!DOCTYPE html>
 			<html lang="en">
