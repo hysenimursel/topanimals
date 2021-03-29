@@ -21,12 +21,12 @@ var adapterFor = (function() {
 }());
 
 // khai bao link url
-var rootURL = "http://pawsworld.me/";
+var rootURL = "http://heavenofanimals.com/wp-json/posti/v1";
 
 
 function getData(postID){
 	return new Promise(function(resolve, reject){
-		var url = rootURL + '?pcs=1&p=' + postID;
+		var url = rootURL + 'posti/' + postID;
 		adapterFor(url).get(url, function(res){
 		    var body = '';
 		    res.on('data', function(chunk){
