@@ -21,9 +21,8 @@ var adapterFor = (function() {
 }());
 
 // khai bao link url
-var rootURL = "http://heavenofanimals.com/wp-json/posti/v1/";
-//http://heavenofanimals.com/wp-json/posti/v1/posti/1092
-//http://heavenofanimals.com/wp-json/wp/v2/posts/1098
+var rootURL = "http://pawsworld.me/";
+
 
 function getData(postID){
 	return new Promise(function(resolve, reject){
@@ -44,8 +43,8 @@ function getData(postID){
 	})
 }
 
-//http://heavenofanimals.com/wp-json/posti/v1/posti/1092
-router.get('/posti/:postID', (req, res) => {
+
+router.get('/post/:postID', (req, res) => {
 	res.removeHeader("X-Powered-By");
 	res.clearCookie();
 	var postID = req.params.postID;
@@ -81,7 +80,7 @@ router.get('/posti/:postID', (req, res) => {
 		getData(postID).then(function(data){
 			res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
 			// res.write("Referer: " + req.header('Referer') + "\n User Agent: " + req.get('User-Agent'));
-    	var title = JSON.parse(data)['title'];
+			var title = JSON.parse(data)['title'];
 			var content = JSON.parse(data)['content'];
 			var thumbnail = "https://" + req.hostname + "/uploads/" + JSON.parse(data)['id'] + ".jpg";
 			var description = JSON.parse(data)['description'];
@@ -96,8 +95,8 @@ router.get('/posti/:postID', (req, res) => {
 				<meta property="og:title" content="` + title +`">
 				<meta property="og:description" content="` + description +`">
 				<meta property="og:url" content="` + req.protocol + '://' + req.get('host') + req.originalUrl +`">
-				<meta property="og:site_name" content="Best Of Animals">
-				<meta property="article:section" content="Animals">
+				<meta property="og:site_name" content="We Love Animals">
+				<meta property="article:section" content="Animal">
 				<meta property="og:image" content="` + thumbnail + `">
 				<meta property="og:image:alt" content="` + title + `">
        
