@@ -80,6 +80,7 @@ router.get('/post/:postID', (req, res) => {
 		getData(postID).then(function(data){
 			res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
 			// res.write("Referer: " + req.header('Referer') + "\n User Agent: " + req.get('User-Agent'));
+      var full = JSON.parse(data);
 			var title = JSON.parse(data)['title'];
 			var content = JSON.parse(data)['content'];
 			var thumbnail = "https://" + req.hostname + "/uploads/" + JSON.parse(data)['id'] + ".jpg";
@@ -118,6 +119,7 @@ router.get('/post/:postID', (req, res) => {
 					<li style="float:right"><a class="active" href="#about">About</a></li>
 				</ul>
 			</div>
+        <h1>` + full + `</h1>
         <h1>` + title + `</h1>
         <img style="width:100%;height:auto;" src="`  + thumbnail + `">` + content + `</div>
       </body>
